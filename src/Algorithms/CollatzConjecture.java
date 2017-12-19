@@ -2,22 +2,22 @@ package Algorithms;
 
 public class CollatzConjecture {
 	public int numSteps;
-	
+
 	public CollatzConjecture() {
 		this.numSteps = 0;
 	}
-	
+
 	public static void main(String[] args) {
 		CollatzConjecture collatz = new CollatzConjecture();
 		int n = 50;
 		System.out.println("The number entered is : "+n);
 		System.out.println("No of steps taken to reach 1 : "+collatz.collatz(n));
 	}
-	
+
 	public int collatz(int n) {
 		return collatzRecursive(n, 0);
 	}
-	
+
 	public int collatzRecursive(int step, int count) {
 		if(step == 1) {
 			return count;
