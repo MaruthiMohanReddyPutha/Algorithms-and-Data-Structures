@@ -2,7 +2,10 @@ class AddTwoNumbers {
 
     public static void main(String[] args){
         ListNode test1 = new ListNode(5);
+        test1.next = new ListNode(2);
+        test1.next.next = (new ListNode(3));
         ListNode test2 = new ListNode(5);
+        test2.next  = new ListNode(9);
         AddTwoNumbers driver = new AddTwoNumbers();
         driver.printLinkedList(driver.addTwoNumbers(test1, test2));
     }
@@ -24,10 +27,11 @@ class AddTwoNumbers {
             l1 = paddingList(l1, len2-len1);
             result = recursivelyAdd(l1, l2);
         }
-
+        System.out.println("Carry over value inside the main driver "+carryOver);
         if(carryOver != 0){
             ListNode latestHead = new ListNode(carryOver);
             latestHead.next = result;
+            result = latestHead;
         }
 
         return result;
@@ -38,6 +42,7 @@ class AddTwoNumbers {
         if(h1.next == null && h2.next == null){     //Base Case to get out of recursion
             int total = h1.val+h2.val + carryOver;
             carryOver = total / 10;
+            System.out.println("Carry over inside if loop, "+carryOver);
             return new ListNode(total % 10);
         }
         ListNode sumUntilNow = recursivelyAdd(h1.next, h2.next);    //Recursively get the sum and the latest significant digit's node.
@@ -45,6 +50,7 @@ class AddTwoNumbers {
         //Setting the final parameters
         int newTotal = h1.val + h2.val + carryOver;
         carryOver = (newTotal)/10;
+        System.out.println("Carry over outside if loop, "+carryOver);
         ListNode stepHead = new ListNode((newTotal)%10);
         stepHead.next = sumUntilNow;    //Creating the new head with the sum until now
         return stepHead;
@@ -75,6 +81,7 @@ class AddTwoNumbers {
         ListNode curr = head;
         while(curr != null){
             System.out.print(curr.val+" -> ");
+            curr = curr.next;
         }
         System.out.println("\n");
     }
